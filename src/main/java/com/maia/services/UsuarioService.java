@@ -18,4 +18,8 @@ public class UsuarioService {
 		return repository.findAll();
 	}
 
+	public Usuario save(Usuario usuario) {
+		return repository.save(usuario);
+	}
+
 }
