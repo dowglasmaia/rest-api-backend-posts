@@ -1,6 +1,7 @@
 package com.maia.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.maia.domain.Usuario;
+import com.maia.domain.dto.UsuarioDTO;
 import com.maia.services.UsuarioService;
 
 @RestController
@@ -18,10 +20,11 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService serive;
 
-	@GetMapping	
-	public ResponseEntity<List<Usuario>> getAll() {
-		List<Usuario> result = serive.findAll();	
-		return ResponseEntity.ok().body(result);
+	@GetMapping
+	public ResponseEntity<List<UsuarioDTO>> getAll() {
+		List<Usuario> lista = serive.findAll();
+		List<UsuarioDTO> listaDTO = lista.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listaDTO);
 
 	}
 
