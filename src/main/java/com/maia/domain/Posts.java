@@ -9,17 +9,20 @@ public class Posts implements Serializable {
 
 	private String descricao;
 
+	private String urlImagem;
+
 	private Integer upVotos;
 
 	public Posts() {
 
 	}
 
-	public Posts(Long id, String descricao, Integer upVotos) {
+	public Posts(Long id, String descricao, Integer upVotos, String urlImagem) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.upVotos = upVotos;
+		this.urlImagem = urlImagem;
 	}
 
 	public Long getId() {
@@ -44,6 +47,14 @@ public class Posts implements Serializable {
 
 	public void setUpVotos(Integer upVotos) {
 		this.upVotos = upVotos;
+	}
+
+	public String getUrlImagem() {
+		return urlImagem;
+	}
+
+	public void setUrlImagem(String urlImagem) {
+		this.urlImagem = urlImagem;
 	}
 
 	@Override
