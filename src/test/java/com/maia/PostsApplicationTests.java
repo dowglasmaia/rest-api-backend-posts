@@ -18,6 +18,8 @@ public class PostsApplicationTests {
 
 	@Autowired
 	private UsuarioRepository userRepo;
+	
+	
 
 	@Test
 	public void contextLoads() {
@@ -38,4 +40,6 @@ public class PostsApplicationTests {
 	public void deleteDB() {
 		userRepo.deleteAll();
 	}
+	
+		
 }

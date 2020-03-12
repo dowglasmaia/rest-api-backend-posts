@@ -23,10 +23,10 @@ public class UsuarioService {
 	public Usuario save(Usuario usuario) {
 		return repository.save(usuario);
 	}
-	
+
 	public Usuario findById(String id) {
 		Optional<Usuario> user = repository.findById(id);
-		return user.orElseThrow(()-> new ObjectNotFoundException("Usuario não encontrado"));
+		return user.orElseThrow(() -> new ObjectNotFoundException("Usuario não encontrado"));
 	}
 
 }
