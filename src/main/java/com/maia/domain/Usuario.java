@@ -2,6 +2,8 @@ package com.maia.domain;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,6 +13,8 @@ public class Usuario implements Serializable {
 
 	@Id
 	private String id;
+
+	@NotEmpty
 	private String nome;
 	private String email;
 

@@ -1,36 +1,56 @@
 package com.maia.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Document
 public class Posts implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-
+	@Id
+	private String id;
+	private String titulo;
 	private String descricao;
-
+	
+	@JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+	private LocalDateTime data;
 	private String urlImagem;
-
 	private Integer upVotos;
 
 	public Posts() {
 
 	}
 
-	public Posts(Long id, String descricao, Integer upVotos, String urlImagem) {
+	public Posts(String id, String titulo, String descricao, LocalDateTime data, String urlImagem, Integer upVotos) {
 		super();
 		this.id = id;
+		this.titulo = titulo;
 		this.descricao = descricao;
-		this.upVotos = upVotos;
+		this.data = data;
 		this.urlImagem = urlImagem;
+		this.upVotos = upVotos;
 	}
 
-	public Long getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getDescricao() {
@@ -41,12 +61,12 @@ public class Posts implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Integer getUpVotos() {
-		return upVotos;
+	public LocalDateTime getData() {
+		return data;
 	}
 
-	public void setUpVotos(Integer upVotos) {
-		this.upVotos = upVotos;
+	public void setData(LocalDateTime data) {
+		this.data = data;
 	}
 
 	public String getUrlImagem() {
@@ -55,6 +75,14 @@ public class Posts implements Serializable {
 
 	public void setUrlImagem(String urlImagem) {
 		this.urlImagem = urlImagem;
+	}
+
+	public Integer getUpVotos() {
+		return upVotos;
+	}
+
+	public void setUpVotos(Integer upVotos) {
+		this.upVotos = upVotos;
 	}
 
 	@Override
@@ -81,5 +109,4 @@ public class Posts implements Serializable {
 			return false;
 		return true;
 	}
-
 }
