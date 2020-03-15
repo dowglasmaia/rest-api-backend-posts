@@ -7,12 +7,12 @@ import com.maia.domain.Usuario;
 public class UsuarioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private Long id;
 	private String nome;
 	private String email;
 
 	public UsuarioDTO() {
-		
+
 	}
 
 	public UsuarioDTO(Usuario usuario) {
@@ -22,11 +22,11 @@ public class UsuarioDTO implements Serializable {
 		this.email = usuario.getEmail();
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -45,7 +45,5 @@ public class UsuarioDTO implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
 }

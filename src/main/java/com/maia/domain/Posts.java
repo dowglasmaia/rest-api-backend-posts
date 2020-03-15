@@ -3,45 +3,55 @@ package com.maia.domain;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Document
+@Entity
 public class Posts implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String titulo;
 	private String descricao;
-	
+	private String descricaoDestaque;
+
 	@JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
 	private LocalDateTime data;
 	private String urlImagem;
 	private Integer upVotos;
 
+	@ManyToOne
+	private Usuario usuario;
+
 	public Posts() {
 
 	}
 
-	public Posts(String id, String titulo, String descricao, LocalDateTime data, String urlImagem, Integer upVotos) {
+	public Posts(Long id, String titulo, String descricao, LocalDateTime data, String urlImagem, Usuario usuario,
+			String descricaoDestaque, Integer upVotos) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.data = data;
 		this.urlImagem = urlImagem;
+		this.usuario = usuario;
+		this.descricaoDestaque = descricaoDestaque;
 		this.upVotos = upVotos;
 	}
 
-
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -77,12 +87,28 @@ public class Posts implements Serializable {
 		this.urlImagem = urlImagem;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public Integer getUpVotos() {
 		return upVotos;
 	}
 
 	public void setUpVotos(Integer upVotos) {
 		this.upVotos = upVotos;
+	}
+
+	public String getDescricaoDestaque() {
+		return descricaoDestaque;
+	}
+
+	public void setDescricaoDestaque(String descricaoDestaque) {
+		this.descricaoDestaque = descricaoDestaque;
 	}
 
 	@Override
