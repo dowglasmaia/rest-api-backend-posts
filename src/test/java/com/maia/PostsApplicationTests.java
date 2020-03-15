@@ -31,10 +31,9 @@ public class PostsApplicationTests {
 	}
 
 	/** @since TESTES DE INTEGRAÇÃO COM BASE DE DADOS */
-
 	/* ## USUARIO ## */
 	@Test
-	@Ignore
+	//@Ignore
 	public void insertUser() {
 		Usuario user1 = new Usuario(null, "Marcos Lima", "marcos@live.com");
 		Usuario user2 = new Usuario(null, "Dowglas Maia", "dowglasmaia@live.com");
@@ -44,7 +43,7 @@ public class PostsApplicationTests {
 	}
 
 	@Test
-	@Ignore
+	//@Ignore
 	public void deleteDB() {
 		userRepo.deleteAll();
 	}
@@ -53,8 +52,8 @@ public class PostsApplicationTests {
 	@Test
 	//@Ignore
 	public void insertPost() {
-		Usuario user1 = new Usuario(null, "Marcos Lima", "marcos@live.com");
-		Usuario user2 = new Usuario(null, "Dowglas Maia", "dowglasmaia@live.com");
+		Usuario user1 = new Usuario(null, "Marcos Lima", "marcos@live.com.br");
+		Usuario user2 = new Usuario(null, "Dowglas Maia", "dowglasmaia@live.com.br");
 		userRepo.saveAll(Arrays.asList(user1, user2));
 
 		Posts posts = new Posts(null, "Dev Angular",
@@ -67,12 +66,6 @@ public class PostsApplicationTests {
 		
 		postRepo.saveAll(Arrays.asList(posts, posts2));
 
-	}
-
-	@Test
-	@Ignore
-	public void upVotosLikePost() {
-		
 	}
 
 }

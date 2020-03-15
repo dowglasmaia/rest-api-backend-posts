@@ -13,6 +13,7 @@ import com.maia.domain.Usuario;
 import com.maia.domain.dto.PostNewUpVotoDTO;
 import com.maia.domain.dto.PostsNewDTO;
 import com.maia.excptions.services.ObjectNotFoundException;
+import com.maia.excptions.services.RuntimeExceptionError;
 import com.maia.repository.PostRepository;
 
 @Service
@@ -30,8 +31,12 @@ public class PostsService {
 	}
 
 	@Transactional
-	public Posts save(Posts posts) {		
-		return repository.save(posts);
+	public Posts save(Posts posts) {
+		try {
+			return repository.save(posts);
+		} catch (Exception e) {
+			throw new RuntimeExceptionError(e.getMessage());
+		}
 	}
 
 	@Transactional(readOnly = true)
@@ -42,7 +47,12 @@ public class PostsService {
 
 	@Transactional
 	public Posts update(Posts post) {
-		return repository.save(post);
+		try {
+			return repository.save(post);
+		} catch (Exception e) {
+			throw new RuntimeExceptionError(e.getMessage());
+		}
+
 	}
 
 	public Posts fromDTO(PostNewUpVotoDTO postDTO) {
@@ -55,7 +65,7 @@ public class PostsService {
 		Usuario user = new Usuario(null, postDTO.getUsuarioNome(), postDTO.getUsuarioEmail());
 		usuarioService.save(user);
 		Posts post = new Posts(null, postDTO.getTitulo(), postDTO.getDescricao(), LocalDateTime.now(), null, user,
-				postDTO.getDescricaoDestaque(), 0);		
+				postDTO.getDescricaoDestaque(), 0);
 		return post;
 	}
 

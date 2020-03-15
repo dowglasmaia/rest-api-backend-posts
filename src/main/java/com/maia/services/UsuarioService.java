@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.maia.domain.Usuario;
 import com.maia.excptions.services.ObjectNotFoundException;
+import com.maia.excptions.services.RuntimeExceptionError;
 import com.maia.repository.UsuarioRepository;
 
 @Service
@@ -24,7 +25,12 @@ public class UsuarioService {
 
 	@Transactional
 	public Usuario save(Usuario usuario) {
-		return repository.save(usuario);
+		try {
+			return repository.save(usuario);
+		} catch (Exception e) {
+			throw new RuntimeExceptionError(e.getMessage());
+		}
+
 	}
 
 	@Transactional(readOnly = true)
